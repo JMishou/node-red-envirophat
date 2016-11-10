@@ -1,0 +1,20 @@
+{
+    "name"          : "node-red-node-enviro-phat",
+    "version"       : "0.0.13",
+    "description"   : "A Node-RED node to interact with a Raspberry Pi envirophat",
+    "license": "Apache-2.0",
+    "keywords": [ "node-red", "envirophat" ],
+    "node-red"      : {
+        "nodes"     : {
+            "sensehat": "envirophat.js"
+        }
+    },
+    "scripts" : {
+        "postinstall" : "scripts/checklib.sh"
+    },
+    "author": {
+        "name": "Jason Mishou",
+        "email": "jason.mishou@txrxlabs.org",
+        "url": "http://txrxlabs.org"
+    }
+}

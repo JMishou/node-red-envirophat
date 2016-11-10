@@ -1,0 +1,79 @@
+
+<script type="text/x-red" data-template-name="rpi-envirophat in">
+<div class="form-row">
+    <label><i class="fa fa-arrow-right"></i> Outputs</label>
+    <label style="width: auto" for="node-input-motion"><input style="vertical-align: top; width: auto; margin-right: 5px;" type="checkbox" id="node-input-motion"> Motion events</label>
+    <div style="padding-left: 125px; margin-top: -5px; color: #bbb;">accelerometer, magnetometer, compass</div>
+</div>
+<div class="form-row">
+    <label for="node-input-motion-int"><i class="fa fa-tag"></i> Motion Interval (s)</label>
+    <input type="text" id="node-input-motionint" value=0.5>
+</div>
+<div class="form-row">
+    <label></label>
+    <label style="width: auto" for="node-input-env"><input style="vertical-align: top; width: auto; margin-right: 5px;" type="checkbox" id="node-input-env"> Environment events</label>
+    <div style="padding-left: 125px; margin-top: -5px; color: #bbb;">temperature, pressure, luminosity, RGB</div>
+</div>
+<div class="form-row">
+    <label for="node-input-env-int"><i class="fa fa-tag"></i> Environment Interval (s)</label>
+    <input type="text" id="node-input-envint" value=1>
+</div>
+<div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name">
+</div>
+</script>
+
+<script type="text/x-red" data-template-name="rpi-envirophat in">
+<p>Raspberry Pi enviro PHAT input node.</p>
+<p>This node sends readings from the various sensors on the envirophat,
+grouped into two sets; motion events, environment events.</p>
+<p><b>Motion events</b></p>
+<p>Motion events include readings from the accelerometer and magnetometer
+as well as the current compass heading. They are sent at a rate of approximately 10
+per second. The <code>topic</code> is set to <code>motion</code> and the
+<code>payload</code> is an object with the following values:</p>
+<ul>
+    <li><code>acceleration.x/y/z</code> : the acceleration intensity in Gs</li>
+    <li><code>magnetometer.x/y/z</code> : the magnetic field intensity in gauss</li>
+    <li><code>compass</code> : the direction of North in degrees</li>
+</ul>
+<p><b>Environment events</b></p>
+<p>Environment events include readings from the temperature, pressure, light, and color
+sensors. They are sent at a rate of approximately 1 per second.  The <code>topic</code>
+is set to <code>environment</code> and the <code>payload</code> is an object
+with the following values:</p>
+<ul>
+<li><code>temperature</code> : degrees Celsius</li>
+<li><code>pressure</code> : Pascal</li>
+<li><code>light</code></li>
+<li><code>red</code></li>
+<li><code>green</code></li>
+<li><code>blue</code></li>
+</ul>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('rpi-envirophat in',{
+        category: 'Raspberry Pi',
+        paletteLabel: "envirophat",
+        color:"#c6dbef",
+        defaults: {
+            name: { value:"" },
+            motion: { value: true },
+            motionint: { value: 0.5 },
+            env: { value: true },
+            envint: { value: 1 }
+        },
+        inputs:0,
+        outputs:1,
+        icon: "rpi.png",
+        label: function() {
+            return this.name||"envirophat";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+
+</script>
