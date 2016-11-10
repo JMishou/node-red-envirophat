@@ -128,3 +128,4 @@ The following message properties can be used to customise the appearance:
 Format: `D<level>`
 
 `level` must be 0 (low) or 1 (high).
+# node-red-envirophat
